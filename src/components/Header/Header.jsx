@@ -5,20 +5,22 @@ import './Header.css';
 function Header() {
   return (
     <header className="header">
-
-      <div className="header__logo">  
-        <img className="header__logo-image" src={Logo} />  
+      <div className="header__container-logo">  
+        <img className="header__logo" src={Logo} />  
         <div className="header__text-container">
           <h1 className="header__title">REACT PIZZA</h1>
           <p className="header__subtitle">самая вкусная пицца во вселенной</p>
         </div>  
       </div>  
+{/* add input */}
+      {/* <input class="header__search" placeholder="Поиск пиццы..." value=""/> */}
 
-      <a className="header__button">
-        <span className='title title__price'>520 ₽</span>
+      {/* extract button-link into a separate component */}
+      <a className="button header__button">
+        <span className='header__button-text header__text-price'>520 ₽</span>
         <div class="button__delimiter"></div>
         <img className='button__image' src={Cart} />
-        <span className='title title__pozition'>0</span>
+        <span className='header__button-text header__text-pozitions'>0</span>
       </a>
   
     </header>
