@@ -1,0 +1,25 @@
+.content {
+  width: 90%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 40px 0;
+}
+
+.content__title {
+  color: #000;
+font-size: 32px;
+font-weight: 700;
+letter-spacing: 0.32px;
+}
+
+@media screen and (max-width: 800px ) {
+  .content__title {
+    font-size: 26px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .content__title {
+    font-size: 18px;
+  }
+}
