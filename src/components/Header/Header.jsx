@@ -18,7 +18,7 @@ function Header() {
       {/* extract button-link into a separate component */}
       <a className="button header__button">
         <span className='header__button-text header__text-price'>520 ₽</span>
-        <div class="button__delimiter"></div>
+        <div className="button__delimiter"></div>
         <img className='button__image' src={Cart} />
         <span className='header__button-text header__text-pozitions'>0</span>
       </a>

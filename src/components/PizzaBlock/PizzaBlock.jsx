@@ -7,10 +7,10 @@ function PizzaBlock() {
     <div className='pizza-block'>
       <img className='pizza-block__image' src={Pizza} />
       <h3 className='pizza-block__title'>Чизбургер-пицца</h3>
-      <div class="pizza-block__info">
+      <div className="pizza-block__info">
 
       </div>
-      <div class="pizza-block__button-block">
+      <div className="pizza-block__button-block">
         
         </div>
     </div>
