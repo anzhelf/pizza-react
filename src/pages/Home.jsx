@@ -15,6 +15,8 @@ function Home() {
         <PizzaBlock />
         <PizzaBlock />
       </div>
+
+      {/* <Error /> */}
       <Pagination />
     </>
   );

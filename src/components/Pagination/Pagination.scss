@@ -1,32 +1,30 @@
+@import '../../vendor/variables.scss';
+
 .pagination {
   list-style-type: none;
   padding: 0;
   display: flex;
-}
 
-.pagination__element {
-  border: 1px solid #fe5f1e;
-  border-radius: 30px;
-  height: 45px;
-  width: 45px;
-  line-height: 42px;
-  margin: 0 10px 0 0;
-  text-align: center;
-}
-
-.pagination__element.active {
-  background-color: #fe5f1e;
-  
-}
-
-.pagination__element.active .pagination__button {
-  color: #fff;
-}
-
-.pagination__button {
-  color: #fe5f1e;
-  position: relative;
-  top: 2px;
-  margin: 0;
-  text-decoration: none;
+  &__element {
+    border: 1px solid $orange;
+    border-radius: 30px;
+    height: 45px;
+    width: 45px;
+    line-height: 42px;
+    margin: 0 10px 0 0;
+    text-align: center;
+  }
+  &__element.active {
+    background-color: $orange;
+  }
+  &__element.active &__button {
+    color: #fff;
+  }
+  &__button {
+    color: $orange;
+    position: relative;
+    top: 2px;
+    margin: 0;
+    text-decoration: none;
+  }
 }

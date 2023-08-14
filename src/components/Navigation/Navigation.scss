@@ -1,31 +1,33 @@
+@import '../../vendor/variables.scss';
+
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.navigation__list {
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-}
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
 
-.navigation__link {
-  list-style-type: none;
-  margin-right: 10px;
-  box-sizing: border-box;
-  padding: 13px 30px;
-  border-radius: 30px;
-  background-color: #f9f9f9;
-  cursor: pointer;
-  color: #2c2c2c;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: 0.24px;
-}
+  &__link {
+    list-style-type: none;
+    margin-right: 10px;
+    box-sizing: border-box;
+    padding: 13px 30px;
+    border-radius: 30px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    color: #2c2c2c;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.24px;
+  }
 
-.active {
-  background-color: #282828;
-  color: #fff;
+  .active {
+    background-color: #282828;
+    color: #fff;
+  }
 }
