@@ -1,5 +1,5 @@
 import logo from '../../image/log.svg';
-import './Card.css';
+import './Card.scss';
 
 function Card() {
   return (
@@ -12,7 +12,6 @@ function Card() {
       </div>
 
       <button className="header__button"></button>
-
     </header>
   );
 }
