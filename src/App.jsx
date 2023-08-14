@@ -26,12 +26,14 @@ function App() {
       });
   }, []);
 
+  console.log(items);
+
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home cards={items} />} />
           {/* <Route path="/" element={<Home />} /> */}
           {/* <Route path="/" element={<Home />} /> */}
         </Routes>
