@@ -2,7 +2,9 @@ import React from 'react';
 import './App.scss';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import { Routes, Route } from 'react-router-dom';
+import { URL } from './constants/constants';
 
 function App() {
   //узнаем адрес странички /
@@ -10,13 +12,10 @@ function App() {
   const [items, setItems] = React.useState([]);
   //для отображения скелетона во время загрузки
   const [isLoading, setIsLoadig] = React.useState(true);
-  const URL = 'https://64bae2425e0670a501d6b934.mockapi.io/items';
 
   React.useEffect(() => {
     fetch(URL)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((json) => {
         setItems(json);
       })
@@ -26,19 +25,20 @@ function App() {
       });
   }, []);
 
-  console.log(items);
-
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Home cards={items} />} />
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route
+            path="/"
+            element={<Home isLoading={isLoading} cards={items} />}
+          />
+
+          <Route path="*" element={<NotFound />} />
+
           {/* <Route path="/" element={<Home />} /> */}
         </Routes>
-        {/* <Content /> */}
-        {/* {items.map((obj) => isLoading ? <h1>Skeleton</h1> : <h2>pizza</h2>)} */}
       </div>
     </div>
   );
