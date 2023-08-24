@@ -17,7 +17,7 @@ function Sort() {
   return (
     <div className="sort">
       <div className="sort__label">
-        <img className="sort__image" src={Icon} />
+        <img className={` ${open && 'opened'} sort__image`} src={Icon} />
         <p className="sort__text">Сортировка по:</p>
         <span
           onClick={() => setOpen(!open)}
@@ -27,7 +27,7 @@ function Sort() {
       </div>
 
       {open && (
-        <div className="sort__popup">
+        <div className={` ${open && 'opened'} sort__popup`}>
           <ul className="sort__list">
             {arrSort.map((value, i) => (
               <li

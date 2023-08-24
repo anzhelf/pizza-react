@@ -8,11 +8,17 @@
 
   &__label {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 8px;
+    max-width: 250px;
   }
 
   &__image {
-    margin-right: 7px;
+    transition: transform 0.8s ease-in-out;
+  }
+
+  &__image.opened {
+    transform: rotate(180deg);
   }
 
   &__text {
@@ -24,16 +30,10 @@
   }
 
   &__text-option {
-    // width: 95px;
-    margin-left: 8px;
     color: $orange;
     font-weight: 400;
     border-bottom: 1px dashed $orange;
   }
-  /* 
-.sort__label.active .sort__popup {
-  visibility: visible;
-} */
 
   &__popup {
     background: #fff;
@@ -44,9 +44,14 @@
     position: absolute;
     right: 0;
     top: 20px;
-    /* visibility: hidden; */
-    transition: visibility 0.3s;
-    visibility: visible;
+    // visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  &__popup.opened {
+    // visibility: visible;
+    opacity: 1;
   }
 
   &__list {
