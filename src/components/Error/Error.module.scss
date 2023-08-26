@@ -1,9 +1,9 @@
-.error {
+.root {
   margin: 100px auto;
   width: 500px;
   text-align: center;
 
-  &__title {
+  h2 {
     color: #232323;
     font-size: 32px;
     font-weight: 700;
@@ -11,7 +11,7 @@
     line-height: normal;
     letter-spacing: 0.32px;
   }
-  &__text {
+  p {
     font-size: 20px;
     color: #777;
     font-size: 18px;
@@ -23,24 +23,24 @@
 }
 
 @media screen and (max-width: 800px) {
-  .error {
+  .root {
     max-width: 350px;
-    &__title {
+    h2 {
       font-size: 26px;
     }
-    &__text {
+    p {
       font-size: 16px;
     }
   }
 }
 
 @media screen and (max-width: 600px) {
-  .error {
+  .root {
     max-width: 270px;
-    &__title {
+    h2 {
       font-size: 18px;
     }
-    &__text {
+    p {
       font-size: 11px;
     }
   }
