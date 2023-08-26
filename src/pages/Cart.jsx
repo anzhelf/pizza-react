@@ -10,6 +10,8 @@ import Plus from '../images/plus.svg';
 import Clear from '../images/clear.svg';
 import Minus from '../images/minus.svg';
 
+import '../components/Animation/Animation.css';
+
 const Cart = () => {
   return (
     <main className={styles.cart}>
@@ -19,7 +21,7 @@ const Cart = () => {
           <h1>Корзина</h1>
         </div>
 
-        <button>
+        <button className="animation__button">
           <img src={Trash} alt="Trash can icon" />
           <p>Очистить корзину</p>
         </button>
@@ -36,18 +38,16 @@ const Cart = () => {
           </div>
 
           <div className={styles.cart__add}>
-            <img src={Plus} />
+            <img className="animation__button" src={Plus} />
             <span>2</span>
-            <img src={Minus} />
+            <img className="animation__button" src={Minus} />
           </div>
 
           <span>770 ₽ </span>
 
-          <img src={Clear} />
+          <img className="animation__button" src={Clear} />
         </li>
-      </ul>
 
-      <ul>
         <li>
           <div className={styles.cart__title}>
             <img src={Pizzza} />
@@ -58,18 +58,16 @@ const Cart = () => {
           </div>
 
           <div className={styles.cart__add}>
-            <img src={Plus} />
+            <img className="animation__button" src={Plus} />
             <span>2</span>
-            <img src={Minus} />
+            <img className="animation__button" src={Minus} />
           </div>
 
           <span>770 ₽ </span>
 
-          <img src={Clear} />
+          <img className="animation__button" src={Clear} />
         </li>
-      </ul>
 
-      <ul>
         <li>
           <div className={styles.cart__title}>
             <img src={Pizzza} />
@@ -80,14 +78,14 @@ const Cart = () => {
           </div>
 
           <div className={styles.cart__add}>
-            <img src={Plus} />
+            <img className="animation__button" src={Plus} />
             <span>2</span>
-            <img src={Minus} />
+            <img className="animation__button" src={Minus} />
           </div>
 
           <span>770 ₽ </span>
 
-          <img src={Clear} />
+          <img className="animation__button" src={Clear} />
         </li>
       </ul>
 
@@ -103,7 +101,7 @@ const Cart = () => {
           <img src={Patch} alt="Patch icon." />
           <p>Вернуться назад</p>
         </Link>
-        <button>Оплатить сейчас</button>
+        <button className="animation__button">Оплатить сейчас</button>
       </div>
     </main>
   );
