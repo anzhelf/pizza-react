@@ -10,33 +10,13 @@ import { URL } from './constants/constants';
 function App() {
   //узнаем адрес странички /
   const pathname = window.location.pathname;
-  const [items, setItems] = React.useState([]);
-  //для отображения скелетона во время загрузки
-  const [isLoading, setIsLoadig] = React.useState(true);
-
-  React.useEffect(() => {
-    fetch(URL)
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
-      })
-      .catch((e) => console.error('error:', e))
-      .finally(() => {
-        setIsLoadig(false);
-      });
-    //чтоб при переходе по ссылке делался скролл вверх
-    window.scroll(0, 0);
-  }, []);
 
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
         <Routes>
-          <Route
-            path="/"
-            element={<Home isLoading={isLoading} cards={items} />}
-          />
+          <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

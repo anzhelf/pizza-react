@@ -3,14 +3,13 @@ import './Sort.scss';
 import Icon from '../../images/sort.svg';
 import '../Animation/Animation.css';
 
-function Sort() {
+function Sort({ sortType, onChangeSort }) {
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState(0);
   const arrSort = ['популярности', 'цене', 'алфавиту'];
-  const sortName = arrSort[selected];
+  const sortName = arrSort[sortType];
 
-  const onClickListIttem = (i) => {
-    setSelected(i);
+  const onChange = (i) => {
+    onChangeSort(i);
     setOpen(false);
   };
 
@@ -31,10 +30,10 @@ function Sort() {
           <ul className="sort__list">
             {arrSort.map((value, i) => (
               <li
-                onClick={() => onClickListIttem(i)}
+                onClick={() => onChange(i)}
                 key={i}
                 className={`sort__link animation__link ${
-                  selected === i ? 'sort__link_active' : ''
+                  sortType === i ? 'sort__link_active' : ''
                 }`}>
                 {value}
               </li>

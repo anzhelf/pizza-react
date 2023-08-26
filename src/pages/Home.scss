@@ -1,3 +1,9 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .title {
   color: #000;
   font-size: 32px;
@@ -19,6 +25,14 @@
 @media screen and (max-width: 1425px) {
   .pizza-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1172px) {
+  .menu {
+    flex-direction: column-reverse;
+    gap: 30px;
+    width: 100%;
   }
 }
 

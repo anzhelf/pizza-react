@@ -1,6 +1,6 @@
 import React from 'react';
 // import './NotFound.css';/
-import Navigation from '../components/Navigation/Navigation';
+import Navigation from '../components/Category/Category';
 import Error from '../components/Error/Error';
 
 function NotFound() {
