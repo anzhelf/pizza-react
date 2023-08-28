@@ -5,8 +5,14 @@ import '../Animation/Animation.css';
 
 function Sort({ sortType, onChangeSort }) {
   const [open, setOpen] = React.useState(false);
-  const arrSort = ['популярности', 'цене', 'алфавиту'];
-  const sortName = arrSort[sortType];
+  const arrSort = [
+    { name: 'популярности (DESC)', sortProperty: 'rating' },
+    { name: 'популярности (ASC)', sortProperty: '-rating' },
+    { name: 'цене (DESC)', sortProperty: 'price' },
+    { name: 'цене (ASC)', sortProperty: '-price' },
+    { name: 'алфавиту (DESC)', sortProperty: 'title' },
+    { name: 'алфавиту (ASC)', sortProperty: '-title' },
+  ];
 
   const onChange = (i) => {
     onChangeSort(i);
@@ -21,21 +27,23 @@ function Sort({ sortType, onChangeSort }) {
         <span
           onClick={() => setOpen(!open)}
           className="sort__text option sort__text-option animation__link">
-          {sortName}
+          {sortType.name}
         </span>
       </div>
 
       {open && (
         <div className={` ${open && 'opened'} sort__popup`}>
           <ul className="sort__list">
-            {arrSort.map((value, i) => (
+            {arrSort.map((obj, i) => (
               <li
-                onClick={() => onChange(i)}
+                onClick={() => onChange(obj)}
                 key={i}
                 className={`sort__link animation__link ${
-                  sortType === i ? 'sort__link_active' : ''
+                  sortType.sortProperty === obj.sortProperty
+                    ? 'sort__link_active'
+                    : ''
                 }`}>
-                {value}
+                {obj.name}
               </li>
             ))}
           </ul>

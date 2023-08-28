@@ -12,15 +12,20 @@ function Home() {
   const [items, setItems] = React.useState([]);
   //для отображения скелетона во время загрузки
   const [isLoading, setIsLoadig] = React.useState(true);
-
   const [categoryId, setCategoryId] = React.useState(0);
-  const [sortType, setSortType] = React.useState(0);
+  const [sortType, setSortType] = React.useState({
+    name: 'популярности (DESC)',
+    sortProperty: 'rating',
+  });
+
+  const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+  const sortBy = sortType.sortProperty.replace('-', '');
+  const category = categoryId > 0 ? `category=${categoryId}` : '';
 
   React.useEffect(() => {
     setIsLoadig(true);
     fetch(
-      'https://64bae2425e0670a501d6b934.mockapi.io/items?category=' +
-        categoryId,
+      `https://64bae2425e0670a501d6b934.mockapi.io/items?${category}sortBy=${sortBy}&order=${order}`,
     )
       .then((res) => res.json())
       .then((json) => {
@@ -32,7 +37,7 @@ function Home() {
       });
     //чтоб при переходе по ссылке делался скролл вверх
     window.scroll(0, 0);
-  }, [categoryId]);
+  }, [categoryId, sortType]);
 
   return (
     <>
@@ -49,7 +54,7 @@ function Home() {
       <div className="pizza-list">
         {isLoading
           ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
-          : items.map((obj) => <PizzaBlock {...obj} key={obj.id} />)}
+          : items.map((obj, i) => <PizzaBlock {...obj} key={i} />)}
       </div>
 
       {/* <Error /> */}

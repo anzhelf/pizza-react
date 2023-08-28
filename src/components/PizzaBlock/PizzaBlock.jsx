@@ -16,8 +16,9 @@ function PizzaBlock({ imageUrl, title, price, id, sizes, types }) {
 
       <div className="pizza-block__options">
         <ul className="pizza-block__list">
-          {types.map((el) => (
+          {types.map((el, i) => (
             <li
+              key={i}
               onClick={() => setSize(el)}
               className={`pizza-block__type ${size === el && 'active'}`}>
               <p className="pizza-block__type-text">{typeNames[el]}</p>
