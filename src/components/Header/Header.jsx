@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../../images/logo.svg';
 import Cart from '../../images/cart.svg';
+import Search from '../Search/Search';
 import './Header.scss';
 
 function Header() {
@@ -16,9 +17,9 @@ function Header() {
           </div>
         </div>
       </Link>
-      {/* add input */}
-      {/* <input class="header__search" placeholder="Поиск пиццы..." value=""/> */}
-      {/* extract button-link into a separate component */}
+
+      <Search />
+
       <Link to="/cart" className="button header__button">
         <span className="header__button-text header__text-price">520 ₽</span>
         <div className="button__delimiter"></div>

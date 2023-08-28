@@ -6,7 +6,7 @@ import Sort from '../components/Sort/Sort';
 import Pagination from '../components/Pagination/Pagination';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/Skeleton/Skeleton';
-import { URL } from '../constants/constants';
+// import { URL } from '../constants/constants';
 
 function Home() {
   const [items, setItems] = React.useState([]);
@@ -59,7 +59,7 @@ function Home() {
       </div>
 
       {/* <Error /> */}
-      <Pagination />
+      {/* <Pagination /> */}
     </>
   );
 }
