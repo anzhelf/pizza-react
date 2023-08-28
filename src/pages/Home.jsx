@@ -25,11 +25,12 @@ function Home() {
   React.useEffect(() => {
     setIsLoadig(true);
     fetch(
-      `https://64bae2425e0670a501d6b934.mockapi.io/items?${category}sortBy=${sortBy}&order=${order}`,
+      `https://64bae2425e0670a501d6b934.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`,
     )
       .then((res) => res.json())
       .then((json) => {
         setItems(json);
+        console.log(json);
       })
       .catch((e) => console.error('error:', e))
       .finally(() => {
