@@ -5,7 +5,7 @@ import Cart from '../../images/cart.svg';
 import Search from '../Search/Search';
 import './Header.scss';
 
-function Header() {
+function Header({ searchValue, setSearchValue }) {
   return (
     <header className="header">
       <Link to="/">
@@ -18,7 +18,7 @@ function Header() {
         </div>
       </Link>
 
-      <Search />
+      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <Link to="/cart" className="button header__button">
         <span className="header__button-text header__text-price">520 ₽</span>

@@ -8,7 +8,7 @@ import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/Skeleton/Skeleton';
 // import { URL } from '../constants/constants';
 
-function Home() {
+function Home({ searchValue }) {
   const [items, setItems] = React.useState([]);
   //для отображения скелетона во время загрузки
   const [isLoading, setIsLoadig] = React.useState(true);
@@ -17,6 +17,16 @@ function Home() {
     name: 'популярности (DESC)',
     sortProperty: 'rating',
   });
+
+  const skelet = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
+  const pizzas = items
+    .filter((obj) => {
+      if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+        return true;
+      }
+      return false;
+    })
+    .map((obj, i) => <PizzaBlock {...obj} key={i} />);
 
   const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
   const sortBy = sortType.sortProperty.replace('-', '');
@@ -52,11 +62,7 @@ function Home() {
       </nav>
 
       <h2 className="title">Все пиццы</h2>
-      <div className="pizza-list">
-        {isLoading
-          ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
-          : items.map((obj, i) => <PizzaBlock {...obj} key={i} />)}
-      </div>
+      <div className="pizza-list">{isLoading ? skelet : pizzas}</div>
 
       {/* <Error /> */}
       {/* <Pagination /> */}
