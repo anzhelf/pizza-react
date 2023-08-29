@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 
 console.log(style.root);
 
-const Pagination = () => {
+const Pagination = ({ onCangePage }) => {
   return (
     // <ul className="pagination">
     //   <li className="pagination__element">
@@ -41,8 +41,8 @@ const Pagination = () => {
       breakLabel="..."
       nextLabel=">"
       previousLabel="<"
-      onPageChange={(e) => console.log(e)}
-      pageRangeDisplayed={8}
+      onPageChange={(e) => onCangePage(e.selected + 1)}
+      pageRangeDisplayed={4}
       pageCount={3}
       renderOnZeroPageCount={null}
     />

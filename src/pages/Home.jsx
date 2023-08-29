@@ -16,6 +16,7 @@ function Home({ searchValue }) {
     name: 'популярности (DESC)',
     sortProperty: 'rating',
   });
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   const skelet = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
   const pizzas = items.map((obj, i) => <PizzaBlock {...obj} key={i} />);
@@ -29,7 +30,7 @@ function Home({ searchValue }) {
   React.useEffect(() => {
     setIsLoadig(true);
     fetch(
-      `https://64bae2425e0670a501d6b934.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}${search}`,
+      `https://64bae2425e0670a501d6b934.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
     )
       .then((res) => res.json())
       .then((json) => {
@@ -41,7 +42,7 @@ function Home({ searchValue }) {
       });
     //чтоб при переходе по ссылке делался скролл вверх
     window.scroll(0, 0);
-  }, [categoryId, sortType, searchValue]);
+  }, [categoryId, sortType, searchValue, currentPage]);
 
   return (
     <>
@@ -58,7 +59,7 @@ function Home({ searchValue }) {
       <div className="pizza-list">{isLoading ? skelet : pizzas}</div>
 
       {/* <Error /> */}
-      <Pagination />
+      <Pagination onCangePage={(number) => setCurrentPage(number)} />
     </>
   );
 }
