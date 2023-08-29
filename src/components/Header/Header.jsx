@@ -4,8 +4,11 @@ import Logo from '../../images/logo.svg';
 import Cart from '../../images/cart.svg';
 import Search from '../Search/Search';
 import './Header.scss';
+import { SearchContext } from '../../App';
 
-function Header({ searchValue, setSearchValue }) {
+function Header() {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+
   return (
     <header className="header">
       <Link to="/">

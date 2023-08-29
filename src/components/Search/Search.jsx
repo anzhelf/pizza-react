@@ -2,8 +2,11 @@ import React from 'react';
 import style from './Search.module.scss';
 import SearchIcon from '../../images/search.svg';
 import ClearIcon from '../../images/close.svg';
+import { SearchContext } from '../../App';
 
-const Search = ({ searchValue, setSearchValue }) => {
+const Search = () => {
+  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+
   function onSubmit(e) {
     e.preventDefault();
     setSearchValue(e.target.value);
