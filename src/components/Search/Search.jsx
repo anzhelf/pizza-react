@@ -1,16 +1,37 @@
 import React from 'react';
 import style from './Search.module.scss';
+import debounce from 'lodash.debounce';
 import SearchIcon from '../../images/search.svg';
 import ClearIcon from '../../images/close.svg';
 import { SearchContext } from '../../App';
 
 const Search = () => {
+  const [value, setValue] = React.useState('');
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
+  const inputRef = React.useRef();
 
   function onSubmit(e) {
     e.preventDefault();
     setSearchValue(e.target.value);
   }
+
+  const onClickClear = () => {
+    setSearchValue('');
+    setValue('');
+    inputRef.current.focus();
+  };
+
+  const updateSearchValue = React.useCallback(
+    debounce((str) => {
+      setSearchValue(str);
+    }, 250),
+    [],
+  );
+
+  const onChangeInput = (e) => {
+    setValue(e.target.value);
+    updateSearchValue(e.target.value);
+  };
 
   return (
     <form className={style.root}>
@@ -19,17 +40,15 @@ const Search = () => {
       </button>
 
       <input
+        ref={inputRef}
         type="text"
         placeholder="Поиск пиццы..."
-        value={searchValue}
-        onChange={(e) => onSubmit(e)}
+        value={value}
+        onChange={onChangeInput}
       />
-      {searchValue && (
-        <button
-          onClick={() => setSearchValue('')}
-          className={style.button__clear}
-          type="submit">
-          <img src={ClearIcon} alt="cline icon." />
+      {value && (
+        <button onClick={onClickClear} className={style.button__clear}>
+          <img src={ClearIcon} alt="clear icon." />
         </button>
       )}
     </form>

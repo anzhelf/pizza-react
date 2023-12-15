@@ -9,20 +9,20 @@ import Skeleton from '../components/Skeleton/Skeleton';
 import axios from 'axios';
 import { SearchContext } from '../App';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 function Home() {
   const { searchValue } = React.useContext(SearchContext);
 
   const dispatch = useDispatch();
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector(
+    (state) => state.filter,
+  );
   const sortType = sort.sortProperty;
 
   const [items, setItems] = React.useState([]);
   //для отображения скелетона во время загрузки
   const [isLoading, setIsLoadig] = React.useState(true);
-
-  const [currentPage, setCurrentPage] = React.useState(1);
 
   const skelet = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
   const pizzas = items.map((obj, i) => <PizzaBlock {...obj} key={i} />);
@@ -30,7 +30,6 @@ function Home() {
   const order = sortType.includes('-') ? 'asc' : 'desc';
   const sortBy = sortType.replace('-', '');
   const category = categoryId > 0 ? `category=${categoryId}` : '';
-
   const search = searchValue ? `&search=${searchValue}` : '';
 
   React.useEffect(() => {
@@ -51,6 +50,10 @@ function Home() {
     dispatch(setCategoryId(id));
   };
 
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
+
   return (
     <>
       <nav className="menu">
@@ -63,7 +66,7 @@ function Home() {
       <div className="pizza-list">{isLoading ? skelet : pizzas}</div>
 
       {/* <Error /> */}
-      <Pagination onCangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onCangePage={onChangePage} />
     </>
   );
 }
