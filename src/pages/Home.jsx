@@ -6,8 +6,8 @@ import Sort from '../components/Sort/Sort';
 import Pagination from '../components/Pagination/Pagination';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/Skeleton/Skeleton';
+import axios from 'axios';
 import { SearchContext } from '../App';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId } from '../redux/slices/filterSlice';
 
@@ -35,15 +35,12 @@ function Home() {
 
   React.useEffect(() => {
     setIsLoadig(true);
-    fetch(
-      `https://64bae2425e0670a501d6b934.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setItems(json);
-      })
-      .catch((e) => console.error('error:', e))
-      .finally(() => {
+    axios
+      .get(
+        `https://64bae2425e0670a501d6b934.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoadig(false);
       });
     //чтоб при переходе по ссылке делался скролл вверх
