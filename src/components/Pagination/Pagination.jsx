@@ -1,8 +1,6 @@
 import style from './Pagination.module.scss';
 import ReactPaginate from 'react-paginate';
 
-console.log(style.root);
-
 const Pagination = ({ onCangePage }) => {
   return (
     <ReactPaginate
