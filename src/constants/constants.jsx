@@ -1,6 +1,6 @@
 export const URL = 'https://64bae2425e0670a501d6b934.mockapi.io/items';
 
-export const arrSort = [
+export const sortList = [
   { name: 'популярности (DESC)', sortProperty: 'rating' },
   { name: 'популярности (ASC)', sortProperty: '-rating' },
   { name: 'цене (DESC)', sortProperty: 'price' },

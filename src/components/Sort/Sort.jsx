@@ -2,7 +2,7 @@ import React from 'react';
 import './Sort.scss';
 import Icon from '../../images/sort.svg';
 import '../Animation/Animation.css';
-import { arrSort } from '../../constants/constants';
+import { sortList } from '../../constants/constants';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setSort } from '../../redux/slices/filterSlice';
@@ -33,7 +33,7 @@ function Sort() {
       {open && (
         <div className={` ${open && 'opened'} sort__popup`}>
           <ul className="sort__list">
-            {arrSort.map((obj, i) => (
+            {sortList.map((obj, i) => (
               <li
                 onClick={() => onChange(obj)}
                 key={i}
