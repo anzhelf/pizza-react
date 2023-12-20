@@ -10,8 +10,6 @@ function PizzaBlock({ imageUrl, title, price, id, sizes, types }) {
     state.cart.items.find((obj) => obj.id === id),
   );
   const addedCount = cartItem ? cartItem.count : 0;
-  const count = 1;
-  console.log(addedCount);
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const typeNames = ['тонкое', 'традиционное'];

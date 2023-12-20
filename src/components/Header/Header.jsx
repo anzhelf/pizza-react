@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 function Header() {
   const { totalPrice, items } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
 
   return (
@@ -34,7 +35,7 @@ function Header() {
           alt="White shopping cart icon."
         />
         <span className="header__button-text header__text-pozitions">
-          {items.length}
+          {totalCount}
         </span>
       </Link>
     </header>

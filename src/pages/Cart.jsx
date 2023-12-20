@@ -4,17 +4,27 @@ import styles from './Cart.module.scss';
 import CartBlack from '../images/cart-black.svg';
 import Trash from '../images/delete.svg';
 import Patch from '../images/path.svg';
-import Pizzza from '../images/pizza.svg';
-
-import Plus from '../images/plus.svg';
-import Clear from '../images/clear.svg';
-import Minus from '../images/minus.svg';
-
 import '../components/Animation/Animation.css';
-
 import { useSelector, useDispatch } from 'react-redux';
+import { addItem, clearItems } from '../redux/slices/cartSlice';
+import CartItem from '../components/CartItem/CartItem';
+import CartEmpty from '../components/CartEmpty/CartEmpty';
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const { items, totalPrice } = useSelector((state) => state.cart);
+  const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  // const addedCount = cartItem ? cartItem.count : 0;
+
+  const onClickClear = () => {
+    if (window.confirm('Ты действительно хочешь очистить корзину?'))
+      dispatch(clearItems());
+  };
+
+  if (!totalPrice) {
+    return <CartEmpty />;
+  }
+
   return (
     <main className={styles.cart}>
       <div className={styles.cart__header}>
@@ -23,78 +33,20 @@ const Cart = () => {
           <h1>Корзина</h1>
         </div>
 
-        <button className="animation__button">
+        <button onClick={onClickClear} className="animation__button">
           <img src={Trash} alt="Trash can icon" />
           <p>Очистить корзину</p>
         </button>
       </div>
-
       <ul>
-        <li>
-          <div className={styles.cart__title}>
-            <img src={Pizzza} />
-            <div>
-              <h2>Сырный цыпленок</h2>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-          </div>
-
-          <div className={styles.cart__add}>
-            <img className="animation__button" src={Plus} />
-            <span>2</span>
-            <img className="animation__button" src={Minus} />
-          </div>
-
-          <span>770 ₽ </span>
-
-          <img className="animation__button" src={Clear} />
-        </li>
-
-        <li>
-          <div className={styles.cart__title}>
-            <img src={Pizzza} />
-            <div>
-              <h2>Сырный цыпленок</h2>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-          </div>
-
-          <div className={styles.cart__add}>
-            <img className="animation__button" src={Plus} />
-            <span>2</span>
-            <img className="animation__button" src={Minus} />
-          </div>
-
-          <span>770 ₽ </span>
-
-          <img className="animation__button" src={Clear} />
-        </li>
-
-        <li>
-          <div className={styles.cart__title}>
-            <img src={Pizzza} />
-            <div>
-              <h2>Сырный цыпленок</h2>
-              <p>тонкое тесто, 26 см.</p>
-            </div>
-          </div>
-
-          <div className={styles.cart__add}>
-            <img className="animation__button" src={Plus} />
-            <span>2</span>
-            <img className="animation__button" src={Minus} />
-          </div>
-
-          <span>770 ₽ </span>
-
-          <img className="animation__button" src={Clear} />
-        </li>
+        {items.map((item) => (
+          <CartItem key={item.id} {...item} />
+        ))}
       </ul>
-
       <div className={styles.cart__total}>
-        <p>Всего пицц: 3 шт.</p>
+        <p>Всего пицц: {totalCount} шт.</p>
         <p>
-          Сумма заказа: <span>900 ₽</span>
+          Сумма заказа: <span>{totalPrice} ₽</span>
         </p>
       </div>
 
