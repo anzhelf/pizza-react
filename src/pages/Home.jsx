@@ -8,7 +8,6 @@ import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/Skeleton/Skeleton';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { SearchContext } from '../App';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPizzas } from '../redux/slices/pizzaSlice';
 import {
@@ -23,10 +22,9 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.pizza);
-  const { categoryId, sort, currentPage } = useSelector(selectFilter);
+  const { categoryId, sort, currentPage, searchValue } =
+    useSelector(selectFilter);
   const sortType = sort.sortProperty;
-
-  const { searchValue } = React.useContext(SearchContext);
 
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
