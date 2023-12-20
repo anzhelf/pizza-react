@@ -7,7 +7,7 @@ import '../../components/Animation/Animation.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
 
-const CartItem = ({ id, title, price, count, imageUrl, type }) => {
+const CartItem = ({ id, title, price, count, imageUrl, type, size }) => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   // const addedCount = cartItem ? cartItem.count : 0;
@@ -29,7 +29,7 @@ const CartItem = ({ id, title, price, count, imageUrl, type }) => {
         <img src={imageUrl} />
         <div>
           <h2>{title}</h2>
-          <p>{`${type}, ${26} см.`}</p>
+          <p>{`${type}, ${size} см.`}</p>
         </div>
       </div>
 

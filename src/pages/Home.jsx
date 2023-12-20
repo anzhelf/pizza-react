@@ -37,7 +37,6 @@ function Home() {
 
   const skelet = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
   const pizzas = items.map((obj, i) => <PizzaBlock {...obj} key={i} />);
-
   const order = sortType.includes('-') ? 'asc' : 'desc';
   const sortBy = sortType.replace('-', '');
   const category = categoryId > 0 ? `category=${categoryId}` : '';

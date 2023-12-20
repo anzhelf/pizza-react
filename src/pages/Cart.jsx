@@ -20,7 +20,7 @@ const Cart = () => {
     if (window.confirm('Ты действительно хочешь очистить корзину?'))
       dispatch(clearItems());
   };
-
+  //условный рендер
   if (!totalPrice) {
     return <CartEmpty />;
   }
