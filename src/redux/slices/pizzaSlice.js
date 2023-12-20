@@ -29,17 +29,17 @@ const pizzaSlice = createSlice({
     [fetchPizzas.pending]: (state) => {
       state.status = 'loading';
       state.items = [];
-      console.log('Идет отправка!');
+      // console.log('Идет отправка!');
     },
     [fetchPizzas.fulfilled]: (state, action) => {
       state.items = action.payload;
       state.status = 'success';
-      console.log(state, 'Всё ОК!');
+      // console.log(state, 'Всё ОК!');
     },
     [fetchPizzas.rejected]: (state, action) => {
       state.items = [];
       state.status = 'error';
-      console.log('Была ошибка!');
+      // console.log('Была ошибка!');
     },
   },
 });

@@ -5,11 +5,11 @@ import '../Animation/Animation.css';
 import { sortList } from '../../constants/constants';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort } from '../../redux/slices/filterSlice';
+import { setSort, selectFilter } from '../../redux/slices/filterSlice';
 
 function Sort() {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
+  const { sort } = useSelector(selectFilter);
   const sortRef = React.useRef();
 
   const [open, setOpen] = React.useState(false);

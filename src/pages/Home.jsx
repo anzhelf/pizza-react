@@ -15,6 +15,7 @@ import {
   setCategoryId,
   setCurrentPage,
   setFilters,
+  selectFilter,
 } from '../redux/slices/filterSlice';
 import { sortList } from '../constants/constants';
 
@@ -22,9 +23,7 @@ function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { items, status } = useSelector((state) => state.pizza);
-  const { categoryId, sort, currentPage } = useSelector(
-    (state) => state.filter,
-  );
+  const { categoryId, sort, currentPage } = useSelector(selectFilter);
   const sortType = sort.sortProperty;
 
   const { searchValue } = React.useContext(SearchContext);

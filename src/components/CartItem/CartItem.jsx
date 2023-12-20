@@ -4,12 +4,11 @@ import Plus from '../../images/plus.svg';
 import Clear from '../../images/clear.svg';
 import Minus from '../../images/minus.svg';
 import '../../components/Animation/Animation.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
 
 const CartItem = ({ id, title, price, count, imageUrl, type, size }) => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
   // const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickPlus = () => {

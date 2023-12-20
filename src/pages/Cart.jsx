@@ -6,15 +6,14 @@ import Trash from '../images/delete.svg';
 import Patch from '../images/path.svg';
 import '../components/Animation/Animation.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { addItem, clearItems } from '../redux/slices/cartSlice';
+import { clearItems, selectCart } from '../redux/slices/cartSlice';
 import CartItem from '../components/CartItem/CartItem';
 import CartEmpty from '../components/CartEmpty/CartEmpty';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { items, totalPrice } = useSelector((state) => state.cart);
+  const { items, totalPrice } = useSelector(selectCart);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
-  // const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickClear = () => {
     if (window.confirm('Ты действительно хочешь очистить корзину?'))
