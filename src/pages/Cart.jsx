@@ -12,6 +12,8 @@ import Minus from '../images/minus.svg';
 
 import '../components/Animation/Animation.css';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 const Cart = () => {
   return (
     <main className={styles.cart}>

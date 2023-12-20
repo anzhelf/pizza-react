@@ -5,8 +5,10 @@ import Cart from '../../images/cart.svg';
 import Search from '../Search/Search';
 import './Header.scss';
 import { SearchContext } from '../../App';
+import { useSelector } from 'react-redux';
 
 function Header() {
+  const { totalPrice, items } = useSelector((state) => state.cart);
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
 
   return (
@@ -24,14 +26,16 @@ function Header() {
       <Search searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <Link to="/cart" className="button header__button">
-        <span className="header__button-text header__text-price">520 ₽</span>
+        <span className="header__button-text header__text-price">{`${totalPrice} ₽`}</span>
         <div className="button__delimiter"></div>
         <img
           className="button__image"
           src={Cart}
           alt="White shopping cart icon."
         />
-        <span className="header__button-text header__text-pozitions">0</span>
+        <span className="header__button-text header__text-pozitions">
+          {items.length}
+        </span>
       </Link>
     </header>
   );
