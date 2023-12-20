@@ -11,6 +11,7 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 import { SearchContext } from '../App';
 import { useSelector, useDispatch } from 'react-redux';
+import { setItems } from '../redux/slices/pizzaSlice';
 import {
   setCategoryId,
   setCurrentPage,
@@ -21,6 +22,7 @@ import { sortList } from '../constants/constants';
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const items = useSelector((state) => state.pizza.items);
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter,
   );
@@ -31,7 +33,6 @@ function Home() {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const [items, setItems] = React.useState([]);
   //для отображения скелетона во время загрузки
   const [isLoading, setIsLoadig] = React.useState(true);
 
@@ -87,10 +88,10 @@ function Home() {
   const fetchPizzas = async () => {
     setIsLoadig(true);
     try {
-      const res = await axios.get(
+      const { data } = await axios.get(
         `https://64bae2425e0670a501d6b934.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
       );
-      setItems(res.data);
+      dispatch(setItems(data));
     } catch (err) {
       console.log('Ошибка при получении пицц!', err);
       alert('Ошибка при получении пицц!');
