@@ -84,16 +84,20 @@ function Home() {
     dispatch(setCurrentPage(number));
   };
 
-  const fetchPizzas = () => {
+  const fetchPizzas = async () => {
     setIsLoadig(true);
-    axios
-      .get(
+    try {
+      const res = await axios.get(
         `https://64bae2425e0670a501d6b934.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`,
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoadig(false);
-      });
+      );
+      setItems(res.data);
+    } catch (err) {
+      console.log('Ошибка при получении пицц!', err);
+      alert('Ошибка при получении пицц!');
+    } finally {
+      setIsLoadig(false);
+    }
+    window.scrollTo(0, 0);
   };
 
   return (
