@@ -7,7 +7,7 @@ import Pagination from '../components/Pagination/Pagination';
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock';
 import Skeleton from '../components/Skeleton/Skeleton';
 import qs from 'qs';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPizzas } from '../redux/slices/pizzaSlice';
 import {
@@ -30,7 +30,11 @@ function Home() {
   const isMounted = React.useRef(false);
 
   const skelet = [...new Array(6)].map((_, i) => <Skeleton key={i} />);
-  const pizzas = items.map((obj, i) => <PizzaBlock {...obj} key={i} />);
+  const pizzas = items.map((obj, i) => (
+    <Link key={i} to={`/pizza/${obj.id}`}>
+      <PizzaBlock {...obj} />
+    </Link>
+  ));
 
   //если изменили параметры и был первый рендер параметры в url
   React.useEffect(() => {

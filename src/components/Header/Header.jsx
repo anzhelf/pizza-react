@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../../images/logo.svg';
 import Cart from '../../images/cart.svg';
 import Search from '../Search/Search';
@@ -10,6 +10,7 @@ import { selectCart } from '../../redux/slices/cartSlice';
 function Header() {
   const { totalPrice, items } = useSelector(selectCart);
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
+  const { pathname } = useLocation();
 
   return (
     <header className="header">
@@ -24,19 +25,20 @@ function Header() {
       </Link>
 
       <Search />
-
-      <Link to="/cart" className="button header__button">
-        <span className="header__button-text header__text-price">{`${totalPrice} ₽`}</span>
-        <div className="button__delimiter"></div>
-        <img
-          className="button__image"
-          src={Cart}
-          alt="White shopping cart icon."
-        />
-        <span className="header__button-text header__text-pozitions">
-          {totalCount}
-        </span>
-      </Link>
+      {pathname !== '/cart' && (
+        <Link to="/cart" className="button header__button">
+          <span className="header__button-text header__text-price">{`${totalPrice} ₽`}</span>
+          <div className="button__delimiter"></div>
+          <img
+            className="button__image"
+            src={Cart}
+            alt="White shopping cart icon."
+          />
+          <span className="header__button-text header__text-pozitions">
+            {totalCount}
+          </span>
+        </Link>
+      )}
     </header>
   );
 }

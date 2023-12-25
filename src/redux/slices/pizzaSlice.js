@@ -25,22 +25,23 @@ const pizzaSlice = createSlice({
       state.items = action.payload;
     },
   },
-  extraReducers: {
-    [fetchPizzas.pending]: (state) => {
-      state.status = 'loading';
-      state.items = [];
-      // console.log('Идет отправка!');
-    },
-    [fetchPizzas.fulfilled]: (state, action) => {
-      state.items = action.payload;
-      state.status = 'success';
-      // console.log(state, 'Всё ОК!');
-    },
-    [fetchPizzas.rejected]: (state, action) => {
-      state.items = [];
-      state.status = 'error';
-      // console.log('Была ошибка!');
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchPizzas.pending, (state) => {
+        state.status = 'loading';
+        state.items = [];
+        // console.log('Идет отправка!');
+      })
+      .addCase(fetchPizzas.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.status = 'success';
+        // console.log(state, 'Всё ОК!');
+      })
+      .addCase(fetchPizzas.rejected, (state) => {
+        state.items = [];
+        state.status = 'error';
+        // console.log('Была ошибка!');
+      });
   },
 });
 
