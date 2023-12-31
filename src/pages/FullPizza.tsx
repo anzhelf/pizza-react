@@ -1,10 +1,15 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const FullPizza = () => {
-  const [pizza, setPizza] = React.useState();
+const FullPizza: React.FC = () => {
+  const [pizza, setPizza] = React.useState<{
+    imageUrl: string;
+    title: string;
+    price: string;
+  }>();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     async function fetchPizza() {
@@ -16,12 +21,13 @@ const FullPizza = () => {
       } catch (err) {
         alert('Ошибка при получении пиццы c id: ' + id);
         console.log('Ошибка при получении пиццы c id: ' + id, err);
+        navigate('/');
       }
     }
     fetchPizza();
   }, []);
 
-  if (!pizza) return 'Загрузка...';
+  if (!pizza) return <>'Загрузка...'</>;
   return (
     <div>
       <img src={pizza.imageUrl} />
