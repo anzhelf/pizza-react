@@ -3,7 +3,15 @@ import styles from './Category.module.scss';
 // import Option from '../Option/Option';
 import '../Animation/Animation.css';
 
-function Category({ categoryId, onChangeCategory }) {
+type CategoryProps = {
+  categoryId: number;
+  onChangeCategory: any;
+};
+
+const Category: React.FC<CategoryProps> = ({
+  categoryId,
+  onChangeCategory,
+}) => {
   const arrCategories = [
     'Все',
     'Мясные',
@@ -24,6 +32,6 @@ function Category({ categoryId, onChangeCategory }) {
       ))}
     </ul>
   );
-}
+};
 
 export default Category;

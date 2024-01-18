@@ -1,8 +1,9 @@
+import React from 'react';
 import styles from './CartEmpty.module.scss';
 import cartEmptyImg from '../../images/cart-empty.svg';
 import { Link } from 'react-router-dom';
 
-function CartEmpty() {
+const CartEmpty: React.FC = () => {
   return (
     <div className={styles['cart-empty']}>
       <h2>Корзина пустая 😕</h2>
@@ -17,6 +18,6 @@ function CartEmpty() {
       </Link>
     </div>
   );
-}
+};
 
 export default CartEmpty;

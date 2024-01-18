@@ -2,7 +2,7 @@ import React from 'react';
 import './Sort.scss';
 import Icon from '../../images/sort.svg';
 import '../Animation/Animation.css';
-import { sortList } from '../../constants/constants';
+import { sortList, SortItem } from '../../constants/constants';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setSort, selectFilter } from '../../redux/slices/filterSlice';
@@ -10,17 +10,17 @@ import { setSort, selectFilter } from '../../redux/slices/filterSlice';
 function Sort() {
   const dispatch = useDispatch();
   const { sort } = useSelector(selectFilter);
-  const sortRef = React.useRef();
+  const sortRef = React.useRef(null);
 
   const [open, setOpen] = React.useState(false);
 
-  const onChange = (obj) => {
+  const onChange = (obj: SortItem) => {
     dispatch(setSort(obj));
     setOpen(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: any) => {
       if (!e.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
